@@ -1,0 +1,17 @@
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: powershellBuild
+    Contents: '*powershellInstall.sh'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+
+- task: SSH@0
+  displayName: 'Run shell script on remote machine'
+  inputs:
+    sshEndpoint: SSHConnect
+    runOptions: script
+    scriptPath: '$(System.DefaultWorkingDirectory)/_powershellBuild/drop/powershellInstall.sh'
