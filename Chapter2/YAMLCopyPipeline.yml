@@ -2,13 +2,13 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Hosted'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: powershellBuild
+    SourceFolder: PowershellBuild
     Contents: '*powershellInstall.sh'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -20,4 +20,4 @@ steps:
   inputs:
     sshEndpoint: Testing
     runOptions: script
-    scriptPath: '$(System.DefaultWorkingDirectory)/_powershellBuild/drop/powershellInstall.sh'
+    scriptPath: '$(System.DefaultWorkingDirectory)/_$(Build.DefinitionName)/drop/powershellInstall.sh'
