@@ -21,3 +21,10 @@ steps:
     sshEndpoint: Testing
     runOptions: script
     scriptPath: '$(System.DefaultWorkingDirectory)/_$(Build.DefinitionName)/drop/powershellInstall.sh'
+
+#- task: SSH@0
+#  displayName: 'Run shell script on remote machine'
+#  inputs:
+#    sshEndpoint: Testing
+#    runOptions: script
+#    scriptPath: '$(System.DefaultWorkingDirectory)/_AzureDevOpsRecipes (1)/drop/powershellInstall.sh'
