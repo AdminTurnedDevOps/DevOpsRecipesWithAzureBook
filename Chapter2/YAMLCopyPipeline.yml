@@ -1,30 +1,55 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+  - stage: Build
+    displayName: Build Stage for SSH script
+    job:
+    - job: Build
+      displayName: Build job
+      pool:
+        vmImage: 'ubuntu-latest'
 
-steps:
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-  inputs:
-    SourceFolder: PowershellBuild
-    Contents: '*powershellInstall.sh'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      steps:
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+        inputs:
+          SourceFolder: PowershellBuild
+          Contents: '*powershellInstall.sh'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: drop'
+        artifactName: 'powershellBuild'
+        targetPath: 'powershellBuild'
 
-- task: SSH@0
-  displayName: 'Run shell script on remote machine'
-  inputs:
-    sshEndpoint: Testing
-    runOptions: script
-    scriptPath: '$(System.DefaultWorkingDirectory)/_$(Build.DefinitionName)/drop/powershellInstall.sh'
+  - stage: Deploy
+    displayName: Deploy stage for SSH  
+    dependsOn: Build
+    jobs:
+    - deployment: Deploy
+      displayName: Deploy SSH script
+      pool:
+        vmImage: 'ubuntu-latest'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: DownloadPipelineArtifact@1
+              inputs:
+                artifactName: 'manifests'
+                downloadPath: '$(System.ArtifactsDirectory)/powershellBuild'
 
-#- task: SSH@0
-#  displayName: 'Run shell script on remote machine'
-#  inputs:
-#    sshEndpoint: Testing
-#    runOptions: script
-#    scriptPath: '$(System.DefaultWorkingDirectory)/_AzureDevOpsRecipes (1)/drop/powershellInstall.sh'
+            - task: SSH@0
+              displayName: 'Run shell script on remote machine'
+              inputs:
+                sshEndpoint: Testing
+                runOptions: script
+                scriptPath: '$(System.ArtifactsDirectory)/powershellBuild/powershellInstall.sh'
+
+  #- task: SSH@0
+  #  displayName: 'Run shell script on remote machine'
+  #  inputs:
+  #    sshEndpoint: Testing
+  #    runOptions: script
+  #    scriptPath: '$(System.DefaultWorkingDirectory)/_AzureDevOpsRecipes (1)/drop/powershellInstall.sh'
