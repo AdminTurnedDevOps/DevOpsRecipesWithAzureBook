@@ -9,7 +9,6 @@ stages:
       displayName: Build job
       pool:
         vmImage: 'ubuntu-latest'
-
       steps:
       - task: CopyFiles@2
         displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
@@ -20,34 +19,6 @@ stages:
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
-        inputs:
-          artifactName: 'powershellBuild'
-          targetPath: 'powershellBuild'
-
-  - stage: Deploy
-    displayName: Deploy stage for SSH  
-    dependsOn: Build
-    jobs:
-    - deployment: Deploy
-      displayName: Deploy SSH script
-      pool:
-        vmImage: 'ubuntu-latest'
-      environment: 'Dev'
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - task: DownloadPipelineArtifact@1
-              inputs:
-                artifactName: 'manifests'
-                downloadPath: '$(System.ArtifactsDirectory)/powershellBuild'
-
-            - task: SSH@0
-              displayName: 'Run shell script on remote machine'
-              inputs:
-                sshEndpoint: Testing
-                runOptions: script
-                scriptPath: '$(System.ArtifactsDirectory)/powershellBuild/powershellInstall.sh'
 
   #- task: SSH@0
   #  displayName: 'Run shell script on remote machine'
