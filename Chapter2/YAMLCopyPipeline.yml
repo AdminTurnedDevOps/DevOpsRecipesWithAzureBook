@@ -19,10 +19,3 @@ stages:
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
-
-  #- task: SSH@0
-  #  displayName: 'Run shell script on remote machine'
-  #  inputs:
-  #    sshEndpoint: Testing
-  #    runOptions: script
-  #    scriptPath: '$(System.DefaultWorkingDirectory)/_AzureDevOpsRecipes (1)/drop/powershellInstall.sh'
