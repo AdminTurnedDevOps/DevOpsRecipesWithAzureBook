@@ -4,7 +4,7 @@ trigger:
 stages:
   - stage: Build
     displayName: Build Stage for SSH script
-    job:
+    jobs:
     - job: Build
       displayName: Build job
       pool:
@@ -20,8 +20,9 @@ stages:
 
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
-        artifactName: 'powershellBuild'
-        targetPath: 'powershellBuild'
+        inputs:
+          artifactName: 'powershellBuild'
+          targetPath: 'powershellBuild'
 
   - stage: Deploy
     displayName: Deploy stage for SSH  
@@ -31,6 +32,7 @@ stages:
       displayName: Deploy SSH script
       pool:
         vmImage: 'ubuntu-latest'
+      environment: 'Dev'
       strategy:
         runOnce:
           deploy:
