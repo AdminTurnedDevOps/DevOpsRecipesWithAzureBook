@@ -4,15 +4,15 @@ function NewACR {
         [parameter(Position = 0,
             HelpMessage = 'Please enter your Resource Group Name',
             ParameterSetName = 'newacr')]
-        [Alias(RG)]
         [ValidateNotNullOrEmpty()]
+        [Alias('rg')]
         [string]$resourceGroup,
 
         [parameter(Position = 1,
             HelpMessage = 'Please enter the name of your Registry',
             ParameterSetName = 'newacr')]
-        [Alias(ACRName)]
         [ValidateNotNullOrEmpty()]
+        [Alias('acr')]
         [string]$registryName,
 
         [parameter(Position = 2,
@@ -23,7 +23,7 @@ function NewACR {
     )
 
     begin {
-        $azcontext = Get-AzContextA
+        $azcontext = Get-AzContext
         if (-not ($azcontext)) {
             Write-Warning 'No Azure Subscription is set. Please run "Set-AzContext" from your shell, choose your subscriptipn, and try again'
             sleep 3
