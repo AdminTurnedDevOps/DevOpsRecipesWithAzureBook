@@ -2,6 +2,7 @@ function NewACR {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'newacr', ConfirmImpact = 'low')]
     param(
         [parameter(Position = 0,
+            Mandatory = $true,
             HelpMessage = 'Please enter your Resource Group Name',
             ParameterSetName = 'newacr')]
         [ValidateNotNullOrEmpty()]
@@ -9,6 +10,7 @@ function NewACR {
         [string]$resourceGroup,
 
         [parameter(Position = 1,
+        Mandatory = $true,
             HelpMessage = 'Please enter the name of your Registry',
             ParameterSetName = 'newacr')]
         [ValidateNotNullOrEmpty()]
@@ -19,7 +21,7 @@ function NewACR {
             HelpMessage = 'Please enter your SKU type. Default is basic',
             ParameterSetName = 'newacr')]
         [ValidateNotNullOrEmpty()]
-        [string]$SKU
+        [string]$SKU = 'Basic'
     )
 
     begin {
