@@ -1,0 +1,21 @@
+trigger:
+- master
+
+stages:
+  - stage: Build
+    displayName: Build Stage for Dockerfile
+    jobs:
+    - job: Build
+      displayName: Build job
+      pool:
+        vmImage: 'windows-latest'
+      steps:
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+        inputs:
+          SourceFolder: Docker
+          Contents: '*Dockerfile'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: drop'
