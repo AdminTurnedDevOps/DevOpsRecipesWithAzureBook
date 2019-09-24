@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  iis:
+    build: .
+    image: "mikelevanacr92.azurecr.io/windowscontainers/iis"
+    command: ping -t localhost
+    ports:
+    - "80"
+    - "443"
+    volumes:
+    - "c:/temp:c:/inetpub"
