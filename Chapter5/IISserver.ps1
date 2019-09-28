@@ -5,7 +5,7 @@ param(
     [parameter(HelpMessage = 'Default image is Windows Server 2019')][string]$image,
     [parameter(HelpMessage = 'Default ports are 80 and 443')][int]$openPorts = '80,443',
     [parameter(HelpMessage = 'Default disk size is 100GB')][string]$diskSizeInGB,
-    [parameter(Mandatory, HelpMessage'Please enter virtual network name')][string]$vNet
+    [parameter(Mandatory, HelpMessage = 'Please enter virtual network name')][string]$vNet
 
 )
 
