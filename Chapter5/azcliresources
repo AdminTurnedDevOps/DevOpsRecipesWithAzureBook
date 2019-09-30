@@ -1,0 +1,2 @@
+az pipelines build list --org your_org--project your_project
+az pipelines release list --org your_org --project your_project
