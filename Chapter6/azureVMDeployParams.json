@@ -3,11 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "adminUsername": {
-        "value": "GEN-UNIQUE"
+        "value": "mike"
       },
       "adminPassword": {
-        "value": "GEN-PASSWORD"
-      },
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.KeyVault/vaults/<vault-name>"
+          },
+          "secretName": "ExamplePassword"
+        }
+    },
       "dnsLabelPrefix": {
         "value": "GEN-UNIQUE"
       }
