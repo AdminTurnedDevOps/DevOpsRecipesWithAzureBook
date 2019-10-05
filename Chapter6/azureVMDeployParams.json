@@ -2,19 +2,19 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "adminUsername": {
-        "value": "mike"
-      },
-      "adminPassword": {
-        "reference": {
-          "keyVault": {
-            "id": "/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.KeyVault/vaults/<vault-name>"
-          },
-          "secretName": "ExamplePassword"
+        "adminUsername": {
+            "value": "mike"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/yoursubscription/resourceGroups/Development/providers/Microsoft.KeyVault/vaults/VMDeployKV"
+                },
+                "secretName": "VMIIS"
+            }
+        },
+        "windowsOSVersion": {
+            "value": "2019-Datacenter"
         }
-    },
-      "dnsLabelPrefix": {
-        "value": "GEN-UNIQUE"
-      }
     }
-  }
+}
