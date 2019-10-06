@@ -8,7 +8,7 @@
         "adminPassword": {
             "reference": {
                 "keyVault": {
-                    "id": "/subscriptions/yoursubscription/resourceGroups/Development/providers/Microsoft.KeyVault/vaults/VMDeployKV"
+                    "id": "/subscriptions/your_subscription/resourceGroups/Development/providers/Microsoft.KeyVault/vaults/VMDeployKV"
                 },
                 "secretName": "VMIIS"
             }
