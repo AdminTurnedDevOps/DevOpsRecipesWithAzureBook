@@ -13,6 +13,9 @@
         },
         "subnetName1": {
             "value": "vNetSub1"
-        }
+        },
+        "createNetworkSecurityGroup": {
+            "value": false
+          }
     }
   }

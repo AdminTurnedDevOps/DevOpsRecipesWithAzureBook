@@ -2,6 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "createNetworkSecurityGroup": {
+            "type": "bool",
+            "defaultValue": true
+        },
         "vnetName": {
             "type": "string"
         },
@@ -39,6 +43,7 @@
     },
     "resources": [
         {
+            "condition": "[parameters('createNetworkSecurityGroup')]",
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroupName')]",
