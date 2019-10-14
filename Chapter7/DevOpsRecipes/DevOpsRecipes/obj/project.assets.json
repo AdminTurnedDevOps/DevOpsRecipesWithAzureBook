@@ -11807,11 +11807,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mike\\source\\repos\\DevOpsRecipes\\DevOpsRecipes\\DevOpsRecipes.csproj",
+      "projectUniqueName": "C:\\Users\\Mike\\Desktop\\DevOpsRecipesWithAzureBook\\Chapter7\\DevOpsRecipes\\DevOpsRecipes\\DevOpsRecipes.csproj",
       "projectName": "DevOpsRecipes",
-      "projectPath": "C:\\Users\\Mike\\source\\repos\\DevOpsRecipes\\DevOpsRecipes\\DevOpsRecipes.csproj",
+      "projectPath": "C:\\Users\\Mike\\Desktop\\DevOpsRecipesWithAzureBook\\Chapter7\\DevOpsRecipes\\DevOpsRecipes\\DevOpsRecipes.csproj",
       "packagesPath": "C:\\Users\\Mike\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mike\\source\\repos\\DevOpsRecipes\\DevOpsRecipes\\obj\\",
+      "outputPath": "C:\\Users\\Mike\\Desktop\\DevOpsRecipesWithAzureBook\\Chapter7\\DevOpsRecipes\\DevOpsRecipes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
